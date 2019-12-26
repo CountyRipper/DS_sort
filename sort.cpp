@@ -1,4 +1,4 @@
-#include "simple_sort.h"
+#include "sort.h"
 
 template<class Type>
 void Swap(Type &a1,Type &a2){
@@ -41,5 +41,27 @@ void SelectSort(Type elem[],int n){
             }
         }
         Swap(elem[i],elem[lowindex]);
+    }
+}
+template<class Type>
+void ShellInsert(Type elem[],int n,int incr){
+    //进行增量为incr的插入排序
+    for(int i=incr;i<n;i++){
+        //进行incr-1趟插入排序
+        Type e=elem[i];
+        int j;
+        for(j=i-incr;j>=0&&e<elem[i];j-=incr){
+            //将子序列中比e大的都往后移
+            elem[j+incr]=elem[j];
+        }
+        elem[j+incr]=e;
+    }
+}
+
+template<class Type>
+void ShellSort(Type elem[],int n,int d[],int t){
+    //给定一个序列ele[]和长度n，以及进行Shell排序的增量序列d[]和长度t，进行希尔排序
+    for(int i=0;i<t;i++){
+        ShellInsert(elem,n,d[i]);//根据本轮的增量来进行插入排序
     }
 }

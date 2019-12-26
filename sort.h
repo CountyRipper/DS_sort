@@ -1,5 +1,5 @@
-#ifndef _SIMPLE_SORT_H_
-#define _SIMPLE_SORT_H_
+#ifndef _SORT_H_
+#define _SORT_H_
 
 template<class Type>
 void Swap(Type &a1,Type &s2);
@@ -13,4 +13,10 @@ void InsertSort(Type elem[],int n);
 template<class Type>
 void SelectSort(Type elem[],int n);
 
+//Shell希尔排序
+template<class Type>
+void ShellSort(Type elem[],int n);
+
+//template<class Type>
+//void ShellInsert()
 #endif 
