@@ -1,5 +1,5 @@
-#ifndef _SORT_H_
-#define _SORT_H_
+#ifndef _MYSORT_H_
+#define _MYSORT_H_
 
 template<class Type>
 void Swap(Type &a1,Type &s2);
@@ -19,4 +19,7 @@ void ShellSort(Type elem[],int n);
 
 //template<class Type>
 //void ShellInsert()
+
+template<class Type>
+void QuikSort(Type elem[],int f,int n);
 #endif 

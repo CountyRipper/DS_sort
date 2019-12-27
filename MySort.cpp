@@ -1,4 +1,4 @@
-#include "sort.h"
+#include "MySort.h"
 
 template<class Type>
 void Swap(Type &a1,Type &a2){
@@ -23,7 +23,8 @@ template<class Type>
 void InsertSort(Type elem[],int n){
     for(int i=1;i<n;i++){
         Type e=elem[i];
-        for(int j=i-1;j>=0&&e<elem[j];j--){
+        int j;
+        for(j=i-1;j>=0&&e<elem[j];j--){
             //只要是比e小的元素都往后移动,占据elem[i]的位置
             elem[j+1]=elem[j];
         }
@@ -43,6 +44,7 @@ void SelectSort(Type elem[],int n){
         Swap(elem[i],elem[lowindex]);
     }
 }
+
 template<class Type>
 void ShellInsert(Type elem[],int n,int incr){
     //进行增量为incr的插入排序
@@ -63,5 +65,30 @@ void ShellSort(Type elem[],int n,int d[],int t){
     //给定一个序列ele[]和长度n，以及进行Shell排序的增量序列d[]和长度t，进行希尔排序
     for(int i=0;i<t;i++){
         ShellInsert(elem,n,d[i]);//根据本轮的增量来进行插入排序
+    }
+}
+
+template<class Type>
+void QuikSort(Type elem[],int f,int n){
+    //f为初始位置，n为最后位置
+    int low =f; int high=n;
+    Type p=elem[low];//获得枢轴
+    while(low<high){
+        while(low<high&&elem[high]>=p){
+            //向左探测，直到遇到有元素比枢轴元素小
+            high--;
+        }
+        elem[low]=elem[high];
+        while(low<high&&elem[low]<=p){
+            //向右探测，直到遇到元素比枢轴元素大，就把这个元素换给high
+            low++;
+        }
+        elem[high]=elem[low];
+    }
+    elem[low]=p;//枢轴归位
+    if(f<n){
+        //长度大于1
+        QuikSort(elem,0,low-1);
+        QuikSort(elem,low+1,n);
     }
 }
